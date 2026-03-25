@@ -13,11 +13,6 @@ const sqrDiv = document.querySelectorAll("#square-divs");
 sqrDiv.forEach(square => {
     square.addEventListener("mouseenter", function(event) {
     console.log("Mouse is inside the div!");
+    event.target.style.backgroundColor = "black";
 });
-});
-
-sqrDiv.forEach(square => {
-    square.addEventListener("mouseleave", function(event) {
-        console.log("Mouse left the div!");
-    });
 });
