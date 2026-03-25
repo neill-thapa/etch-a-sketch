@@ -4,15 +4,26 @@ const containerDiv = document.querySelector("#container");
 
 for (let i = 0; i < NUMBER_OF_BOXES; i++) {
     const divSqr = document.createElement("div");
-    divSqr.setAttribute("id", "square-divs");
+    divSqr.classList.add("square-divs");
     containerDiv.appendChild(divSqr);
 }
 
-const sqrDiv = document.querySelectorAll("#square-divs");
+const sqrDiv = document.querySelectorAll(".square-divs");
+const startBtn = document.querySelector("#start");
+const eraser = document.querySelector("#erase");
+
+let mode = "erase";
 
 sqrDiv.forEach(square => {
     square.addEventListener("mouseenter", function(event) {
-    console.log("Mouse is inside the div!");
-    event.target.style.backgroundColor = "black";
+        if (mode === "draw") {
+            event.target.style.backgroundColor = "black";
+        }
+        else if (mode === "erase") {
+            event.target.style.backgroundColor = "white";
+        }
+    });
 });
-});
+
+startBtn.addEventListener("click", () => mode = "draw");
+eraser.addEventListener("click",() => mode = "erase");
