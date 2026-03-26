@@ -1,22 +1,33 @@
+const defaultGridSize = 12;
 const containerDiv = document.querySelector("#container");
 const startBtn = document.querySelector("#start");
 const eraser = document.querySelector("#erase");
 const reset = document.querySelector("#reset");
+const gridSizeBtn = document.querySelector("#sizeGrid");
 let mode = "erase";
 
-let gridSize = drawGrid(12);
-const sqrDiv = document.querySelectorAll(".square-divs"); // select after grid is drawn to the screen
+drawGrid(defaultGridSize); // default grid
 
 startBtn.addEventListener("click", () => mode = "draw");
 eraser.addEventListener("click",() => mode = "erase");
+
 reset.addEventListener("click", () => {
+    const sqrDiv = document.querySelectorAll(".square-divs"); // select after grid is drawn to the screen
+
     sqrDiv.forEach(square => {
         square.style.backgroundColor = "white";
     });
     mode = "erase";
 });
 
+gridSizeBtn.addEventListener("click", () => { // dynamic grid
+    let size = parseInt(prompt("Enter the grid size (max 100)"));
+    drawGrid(size);
+})
+
 function drawGrid(size) {
+    containerDiv.innerHTML = "";
+
     for (let i = 0; i < size * size; i++) {
         const divSqr = document.createElement("div");
         divSqr.classList.add("square-divs");
