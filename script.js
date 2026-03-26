@@ -22,6 +22,18 @@ reset.addEventListener("click", () => {
 
 gridSizeBtn.addEventListener("click", () => { // dynamic grid
     let size = parseInt(prompt("Enter the grid size (max 100)"));
+
+    if (size === null) {
+        return;
+    }
+
+    size = parseInt(size);
+
+    if (isNaN(size) || size <= 0 || size > 100) {
+        alert("Please enter a valid number between 1 and 100!");
+        return;
+    }
+    
     drawGrid(size);
 })
 
