@@ -64,6 +64,7 @@ function drawGrid(size) {
         divSqr.style.width = `${squareSize}px`;
         divSqr.style.height = `${squareSize}px`;
 
+        // Desktop
         divSqr.addEventListener("mouseenter", function(event) {
             if (mode === "draw") {
                 event.target.style.backgroundColor = "black";
@@ -71,7 +72,36 @@ function drawGrid(size) {
             else if (mode === "erase") {
                 event.target.style.backgroundColor = "white";
             }
-        })
+        });
+
+        // Screen touch start
+        divSqr.addEventListener("touchstart", function(event) {
+            if (mode === "draw") {
+                event.target.style.backgroundColor = "black";
+            }
+            else if (mode === "erase") {
+                event.target.style.backgroundColor = "white";
+            }  
+        });
+
+        // Mobile touch move (dragging across squares)
+        divSqr.addEventListener("touchmove", function(event) {
+            const touch = event.touches[0];
+            const el = document.elementFromPoint(touch.clientX, touch.clientY);
+
+            if (!el || !el.classList.contains("square-divs")) {
+                return;
+            }
+
+            if (mode === "draw") {
+                el.style.backgroundColor = "black";
+            }
+            else if (mode === "erase") {
+                el.style.backgroundColor = "white";
+            }
+
+            e.preventDefault(); // prevents scrolling while drawing
+        }, { passive: false });
 
         containerDiv.appendChild(divSqr);
     }
