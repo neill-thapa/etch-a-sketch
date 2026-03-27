@@ -47,7 +47,7 @@ function drawGrid(size) {
         const divSqr = document.createElement("div");
         divSqr.classList.add("square-divs");
 
-        // dynamic resizing of based of clientWidth
+        // dynamic resizing of grid squares to fit the fixed canvas
         divSqr.style.width = `${squareSize}px`;
         divSqr.style.height = `${squareSize}px`;
 
