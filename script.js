@@ -4,6 +4,8 @@ const startBtn = document.querySelector("#start");
 const eraser = document.querySelector("#erase");
 const reset = document.querySelector("#reset");
 const gridSizeBtn = document.querySelector("#sizeGrid");
+const input = document.querySelector("input");
+const errorMessage = document.querySelector("#error-message");
 let mode = "erase";
 
 drawGrid(defaultGridSize); // default grid
@@ -20,22 +22,33 @@ reset.addEventListener("click", () => {
     mode = "erase";
 });
 
-gridSizeBtn.addEventListener("click", () => { // dynamic grid
-    let size = parseInt(prompt("Enter the grid size (max 100)"));
+// allow enter key to generate the grid
+input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        gridSizeBtn.click();
+    }
+})
 
-    if (size === null) {
+gridSizeBtn.addEventListener("click", () => { // dynamic grid
+    let value = input.value.trim();
+
+    if (value === "") {
+        errorMessage.textContent = "Please enter a grid size";
         return;
     }
 
-    size = parseInt(size);
+    let size = parseInt(value);
 
     if (isNaN(size) || size <= 0 || size > 100) {
-        alert("Please enter a valid number between 1 and 100!");
+        errorMessage.textContent = "Enter a valid number between 1 and 100!";
         return;
     }
 
+    errorMessage.textContent = "";
     drawGrid(size);
-})
+    input.value = "";
+    input.focus();
+});
 
 function drawGrid(size) {
     containerDiv.innerHTML = "";

@@ -4,28 +4,155 @@
     padding: 0;
 }
 
+/* Base */
 body {
+    min-height: 100vh;
+    background-color: #292929;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 20px;
+}
+
+/* Parent container */
+#parent-container {
+    max-width: 1400px;
+    margin: 0 auto;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 30px;
 }
 
-#container {
+/* Layout wrapper */
+#grid-and-controls {
     display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 40px;
     flex-wrap: wrap;
-    width: 550px;
-    height: 550px;
 }
 
+/* Heading */
+h1 {
+    color: #4646f4;
+    font-size: 2.5rem;
+}
+
+/* Controls section */
+#controls {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Buttons group */
 #buttons {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
+/* Common button */
+button {
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    background-color: #4646f4;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: #5a5afc;
+}
+
+/* Grid input container */
+#grid-input {
+    background-color: #4646f4;
+    padding: 15px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    color: white;
+}
+
+/* Input section */
+#input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#grid-input label {
+    font-size: 0.95rem;
+}
+
+#grid-input input {
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    font-size: 0.9rem;
+    width: 220px;
+}
+
+/* Generate button inside grid input */
+#grid-input button {
+    background-color: #292929;
+}
+
+#grid-input input:focus {
+    outline: 2px solid #292929;
+}
+
+/* Grid container */
+#container {
+    background-color: white;
+    width: 550px;
+    height: 550px;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Grid squares */
 #container div {
     border: 1px solid black;
+    transition: background-color 0.1s ease;
 }
 
-button {
-    margin-bottom: 10px;
+/* Error message */
+#error-message {
+    color: #f64040;
+    font-size: 0.85rem;
+    height: 16px; /* prevents layout shift */
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    #grid-and-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 600px) {
+    #container {
+        width: 90vw;
+        height: 90vw;
+    }
+
+    button {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
 }

@@ -7,15 +7,39 @@
     <title>Etch-a-Sketch</title>
 </head>
 <body>
-    <h1>Etch-A-Sketch</h1>
+    <div id="parent-container">
 
-    <div id="buttons">
-        <button id="start">Start Drawing</button>
-        <button id="erase">Eraser</button>
-        <button id="reset">Reset</button>
-        <button id="sizeGrid">Grid Size</button>
+        <h1>Etch-A-Sketch</h1>
+
+        <div id="grid-and-controls">
+
+            <div id="controls">
+
+                <div id="buttons">
+                    <button id="start">Start Drawing</button>
+                    <button id="erase">Eraser</button>
+                    <button id="reset">Reset</button>
+                </div>
+                
+                <div id="grid-input">
+
+                    <div id="input-section">
+                        <label for="grid-size">Enter the grid size:</label>
+                        <input id="grid-size" placeholder="For eg. 12 for 12×12 grid">
+                        <p id="error-message"></p>
+                    </div>
+
+                    <button id="sizeGrid">Generate the grid</button>
+
+                </div>
+
+            </div>
+
+            <div id="container"></div>
+
+        </div>
+
     </div>
-    <div id="container"></div>
 
     <script src="./script.js"></script>
 </body>
