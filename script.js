@@ -33,16 +33,23 @@ gridSizeBtn.addEventListener("click", () => { // dynamic grid
         alert("Please enter a valid number between 1 and 100!");
         return;
     }
-    
+
     drawGrid(size);
 })
 
 function drawGrid(size) {
     containerDiv.innerHTML = "";
+    
+    const containerSize = containerDiv.clientWidth;
+    const squareSize = containerSize / size;
 
     for (let i = 0; i < size * size; i++) {
         const divSqr = document.createElement("div");
         divSqr.classList.add("square-divs");
+
+        // dynamic resizing of based of clientWidth
+        divSqr.style.width = `${squareSize}px`;
+        divSqr.style.height = `${squareSize}px`;
 
         divSqr.addEventListener("mouseenter", function(event) {
             if (mode === "draw") {
@@ -55,6 +62,4 @@ function drawGrid(size) {
 
         containerDiv.appendChild(divSqr);
     }
-
-    return size * size;
 }
